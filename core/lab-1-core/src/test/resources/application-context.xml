@@ -5,10 +5,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd" >
 
-    <bean id="person" class="com.luxoft.springioc.lab1.model.UsualPerson" autowire="constructor">
+    <bean id="person" class="com.luxoft.springioc.lab1.model.UsualPerson" autowire="byName">
         <constructor-arg value="John Smith"/>
         <constructor-arg value="35"/>
-        <constructor-arg ref="country"/>
+        <constructor-arg > <null/> </constructor-arg>
     </bean>
 
     <bean id="country" class="com.luxoft.springioc.lab1.model.Country" autowire="constructor">
