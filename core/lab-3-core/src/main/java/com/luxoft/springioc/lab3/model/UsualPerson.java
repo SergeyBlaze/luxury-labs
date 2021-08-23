@@ -1,16 +1,16 @@
 package com.luxoft.springioc.lab3.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-//import javax.annotation.PostConstruct;
-//import javax.annotation.PreDestroy;
-
 @Service("person")
-public class UsualPerson implements Person {
+public class UsualPerson implements Person, InitializingBean {
 	
 	public static int createdPersons = 0; 
 
@@ -135,6 +135,21 @@ public class UsualPerson implements Person {
         result = 31 * result + (isProgrammer ? 1 : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        UsualPerson person = this;
+        person.setAge(35);
+        person.setHeight(1.78F);
+        person.setIsProgrammer(true);
+        person.setName("Ivan Ivanov");
+
+        List<String> contacts = new ArrayList<String>();
+        contacts.add("asd@asd.ru");
+        contacts.add("+7-234-456-67-89");
+
+        person.setContacts(contacts);
     }
 
 }
