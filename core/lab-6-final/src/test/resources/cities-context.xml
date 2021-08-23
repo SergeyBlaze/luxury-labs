@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Moscow-->
+    <bean id="moscow" class="com.luxoft.springcore.objects.City">
+        <property name="id" value="1"/>
+        <property name="name" value="Moscow"/>
+        <property name="country" ref="russia"/>
+    </bean>
+
+    <!--Vienna-->
+    <bean id="vienna" class="com.luxoft.springcore.objects.City">
+        <property name="id" value="2"/>
+        <property name="name" value="Vienna"/>
+        <property name="country" ref="austria"/>
+    </bean>
+
+    <!--Sofia-->
+    <bean id="sofia" class="com.luxoft.springcore.objects.City">
+        <property name="id" value="3"/>
+        <property name="name" value="Sofia"/>
+        <property name="country" ref="bulgaria"/>
+    </bean>
+
+    <!--Krakow-->
+    <bean id="krakow" class="com.luxoft.springcore.objects.City">
+        <property name="id" value="4"/>
+        <property name="name" value="Krakow"/>
+        <property name="country" ref="poland"/>
+    </bean>
+
+    <!--Warsaw-->
+    <bean id="warsaw" class="com.luxoft.springcore.objects.City">
+        <property name="id" value="4"/>
+        <property name="name" value="Warsaw"/>
+        <property name="country" ref="poland"/>
+    </bean>
+
+</beans>
