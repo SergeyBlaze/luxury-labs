@@ -2,13 +2,16 @@ package com.luxoft.springioc.lab3.model;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 
+@Service("country")
 public class Country implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+    @Value("${country.id}")
 	private int id;
 
     private String name;
