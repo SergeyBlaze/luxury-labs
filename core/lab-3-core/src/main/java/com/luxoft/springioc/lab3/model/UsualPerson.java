@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service("person")
-public class UsualPerson implements Person, InitializingBean {
+public class UsualPerson implements Person, InitializingBean, DisposableBean {
 	
 	public static int createdPersons = 0; 
 
@@ -150,6 +151,12 @@ public class UsualPerson implements Person, InitializingBean {
         contacts.add("+7-234-456-67-89");
 
         person.setContacts(contacts);
+
+        ++createdPersons;
     }
 
+    @Override
+    public void destroy() throws Exception {
+        --createdPersons;
+    }
 }
