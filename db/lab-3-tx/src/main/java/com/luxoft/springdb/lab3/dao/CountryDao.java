@@ -9,7 +9,10 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.luxoft.springdb.lab3.model.Country;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public class CountryDao extends JdbcDaoSupport {
 	private static final String LOAD_COUNTRIES_SQL = "insert into country (name, code_name) values ";
 
@@ -46,6 +49,7 @@ public class CountryDao extends JdbcDaoSupport {
 				sqlParameterSource, COUNTRY_ROW_MAPPER);
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void updateCountryName(String codeName, String newCountryName) {
 		getJdbcTemplate().execute(
 				UPDATE_COUNTRY_NAME_SQL_1 + newCountryName + "'"
