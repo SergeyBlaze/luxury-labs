@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxoft.springdb.lab1.dao.CountryNotFoundException;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,13 @@ import com.luxoft.springdb.lab1.model.Country;
 @ContextConfiguration("classpath:application-context.xml")
 public class JdbcTest{
 
+    public static final String[][] COUNTRY_INIT_DATA = { { "Australia", "AU" },
+            { "Canada", "CA" }, { "France", "FR" }, { "Hong Kong", "HK" },
+            { "Iceland", "IC" }, { "Japan", "JP" }, { "Nepal", "NP" },
+            { "Russian Federation", "RU" }, { "Sweden", "SE" },
+            { "Switzerland", "CH" }, { "United Kingdom", "GB" },
+            { "United States", "US" } };
+
 	@Autowired
 	private CountryDao countryDao;
 	
@@ -30,7 +38,6 @@ public class JdbcTest{
     @Before
     public void setUp() throws Exception {
         initExpectedCountryLists();
-        countryDao.loadCountries();
     }
 
     
@@ -63,9 +70,21 @@ public class JdbcTest{
         assertEquals(countryWithChangedName, countryDao.getCountryByCodeName("RU"));
     }
 
+    @Test
+    @DirtiesContext
+    public void testCountryGetName() throws CountryNotFoundException {
+        assertEquals(new Country(1, "Canada", "CA"), countryDao.getCountryByName("Canada"));
+    }
+
+    @Test(expected = CountryNotFoundException.class)
+    @DirtiesContext
+    public void testCountryGetNameExc() throws CountryNotFoundException {
+        assertEquals(countryWithChangedName, countryDao.getCountryByName("Canada Not Found"));
+    }
+
     private void initExpectedCountryLists() {
-         for (int i = 0; i < CountryDao.COUNTRY_INIT_DATA.length; i++) {
-             String[] countryInitData = CountryDao.COUNTRY_INIT_DATA[i];
+         for (int i = 0; i < COUNTRY_INIT_DATA.length; i++) {
+             String[] countryInitData = COUNTRY_INIT_DATA[i];
              Country country = new Country(i, countryInitData[0], countryInitData[1]);
              expectedCountryList.add(country);
              if (country.getName().startsWith("A")) {
