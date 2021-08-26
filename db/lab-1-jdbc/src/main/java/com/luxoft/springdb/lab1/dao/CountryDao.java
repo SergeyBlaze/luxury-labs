@@ -4,13 +4,12 @@ import com.luxoft.springdb.lab1.model.Country;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service("countryDao")
-public class CountryDao extends JdbcDaoSupport {
+public class CountryDao {
 
     private static final String GET_ALL_COUNTRIES_SQL = "select * from country";
     private static final String GET_COUNTRIES_BY_NAME_SQL = "select * from country where name like :name";
