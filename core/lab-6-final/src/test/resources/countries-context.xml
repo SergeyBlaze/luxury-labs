@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <context:property-placeholder location="classpath:locations.properties" ignore-unresolvable="true"/>
+
+    <!--Russia-->
+    <bean id="russia" class="com.luxoft.springcore.objects.Country">
+        <property name="id" value="${russia.id}"/>
+        <property name="name" value="${russia.name}"/>
+        <property name="codeName" value="${russia.codeName}"/>
+    </bean>
+
+    <!--Austria-->
+    <bean id="austria" class="com.luxoft.springcore.objects.Country">
+        <property name="id" value="${austria.id}"/>
+        <property name="name" value="${austria.name}"/>
+        <property name="codeName" value="${austria.codeName}"/>
+    </bean>
+
+    <!--Bulgaria-->
+    <bean id="bulgaria" class="com.luxoft.springcore.objects.Country">
+        <property name="id" value="${bulgaria.id}"/>
+        <property name="name" value="${bulgaria.name}"/>
+        <property name="codeName" value="${bulgaria.codeName}"/>
+    </bean>
+
+    <!--Poland-->
+    <bean id="poland" class="com.luxoft.springcore.objects.Country">
+        <property name="id" value="${poland.id}"/>
+        <property name="name" value="${poland.name}"/>
+        <property name="codeName" value="${poland.codeName}"/>
+    </bean>
+
+</beans>

@@ -1,6 +1,15 @@
 package com.luxoft.springcore.objects;
 
+import com.luxoft.springcore.travel.Connection;
+import com.luxoft.springcore.travel.TravellingOpportunities;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class UsualPerson implements Person {
+
+    private final static Logger LOG = Logger.getLogger(UsualPerson.class.getName());
+
     private int id;
 
     private String name;
@@ -9,7 +18,9 @@ public class UsualPerson implements Person {
     
 	private int age;
 	private boolean isProgrammer;
-    
+
+	private TravellingOpportunities travellingOpportunities;
+
     public UsualPerson(String name, int age, City city) {
     	this.name = name;
     	this.age = age;
@@ -64,10 +75,17 @@ public class UsualPerson implements Person {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
+
+
     public void travel(City source, City destination) {
-    	
+        LOG.log(Level.INFO, "{0} has arrived to {1}", new String[] {name, destination.toString()});
+        travellingOpportunities.getConnectionsList().stream()
+                .filter(connection -> {
+                    return connection.getSource().equals(source) &&
+                            connection.getDestination().equals(destination);
+                })
+                .map(Connection::getDistance)
+                .forEach(distance -> distanceTravelled += distance);
     }
 
     public String toString() {
@@ -100,6 +118,14 @@ public class UsualPerson implements Person {
         result = 31 * result + (isProgrammer ? 1 : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
         return result;
+    }
+
+    public void setTravellingOpportunities(TravellingOpportunities travellingOpportunities) {
+        this.travellingOpportunities = travellingOpportunities;
+    }
+
+    public TravellingOpportunities getTravellingOpportunities() {
+        return travellingOpportunities;
     }
 
 }

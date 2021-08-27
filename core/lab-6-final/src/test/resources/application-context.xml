@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-				
+
+	<import resource="classpath*:/countries-context.xml"/>
+	<import resource="classpath*:/cities-context.xml"/>
+	<import resource="classpath*:/persons-context.xml"/>
+
+	<bean id="operatorsBean" class="com.luxoft.springcore.objects.Operators">
+		<property name="ageComparisonTest" value="true"/>
+		<property name="distanceComparisonTest" value="true"/>
+	</bean>
+
+	<bean id="travellingOpportunities" class="com.luxoft.springcore.travel.TravellingOpportunities">
+		<property name="connectionsList">
+			<list>
+				<bean class="com.luxoft.springcore.travel.Connection">
+					<constructor-arg ref="moscow"/>
+					<constructor-arg ref="warsaw"/>
+					<constructor-arg value="1130"/>
+				</bean>
+				<bean class="com.luxoft.springcore.travel.Connection">
+					<constructor-arg ref="warsaw"/>
+					<constructor-arg ref="krakow"/>
+					<constructor-arg value="256"/>
+				</bean>
+				<bean class="com.luxoft.springcore.travel.Connection">
+					<constructor-arg ref="sofia"/>
+					<constructor-arg ref="vienna"/>
+					<constructor-arg value="835"/>
+				</bean>
+				<bean class="com.luxoft.springcore.travel.Connection">
+					<constructor-arg ref="vienna"/>
+					<constructor-arg ref="krakow"/>
+					<constructor-arg value="331"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 </beans>

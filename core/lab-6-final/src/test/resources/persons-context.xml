@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="russianPerson" class="com.luxoft.springcore.objects.UsualPerson" autowire="byName">
+        <constructor-arg value="Viktor Ponedelnik"/>
+        <constructor-arg value="35"/>
+        <constructor-arg ref="moscow"/>
+    </bean>
+
+    <bean id="bulgarianPerson" class="com.luxoft.springcore.objects.UsualPerson" autowire="byName">
+        <constructor-arg value="Emil Kostadinov"/>
+        <constructor-arg value="37"/>
+        <constructor-arg ref="sofia"/>
+    </bean>
+
+</beans>
