@@ -1,5 +1,7 @@
 package com.luxoft.springdb.lab3.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.luxoft.springdb.lab3.dao.CountryDao;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 
 import java.util.List;
 
+@Service
 public class ProgrammaticTransactionCountryServiceImpl implements ProgrammaticTransactionCountryService {
     private TransactionTemplate transactionTemplate;
     private CountryDao dao;
@@ -64,7 +67,9 @@ public class ProgrammaticTransactionCountryServiceImpl implements ProgrammaticTr
         return dao;
     }
 
+    @Autowired
     public void setDao(CountryDao dao) {
         this.dao = dao;
     }
+
 }
