@@ -28,6 +28,11 @@ public class HelloWorldTest {
 	public void testInitPerson() {
 		UsualPerson person = (UsualPerson) context.getBean("person", Person.class);
 
+		assertEquals(person.getAge(), 35);
+		assertEquals(person.getName(), "John Smith");
+		assertNotNull(person.getCountry());
+		assertEquals(person.getCountry().getName(), "Russia");
+
 		System.out.println("-->" + person.getCountry().getA());
 //		assertEquals(expectedPerson, person);
 //		System.out.println(person);
