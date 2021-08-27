@@ -1,14 +1,18 @@
 package com.luxoft.springioc.lab3.model;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 
-public class Country implements Serializable{
+@Component("country")
+public class Country implements InitializingBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+    @Value("${country.id}")
 	private int id;
 
     private String name;
@@ -74,5 +78,13 @@ public class Country implements Serializable{
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (codeName != null ? codeName.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Country country = this;
+        country.setId(1);
+        country.setName("Russia");
+        country.setCodeName("RU");
     }
 }
