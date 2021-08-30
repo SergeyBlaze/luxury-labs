@@ -1,30 +1,32 @@
 package com.luxoft.springdb.lab2.dao.jpa;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
 import com.luxoft.springdb.lab2.dao.CountryDao;
 import com.luxoft.springdb.lab2.model.Country;
+import com.luxoft.springdb.lab2.repository.CountryRepository;
+import org.springframework.stereotype.Service;
 
-@Repository
-public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+@Service
+public class CountryJpaDaoImpl extends AbstractJpaDao<CountryRepository> implements CountryDao {
 
 	@Override
 	public void save(Country country) {
-		// TODO: Implement it
+		repository.save(country);
 	}
 
 	@Override
 	public List<Country> getAllCountries() {
-		// TODO: Implement it
-		return null;
+		Iterable<Country> iterable = repository.findAll();
+		return StreamSupport.stream(iterable.spliterator(), false)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public Country getCountryByName(String name) {
-		// TODO: Implement it
-		return null;
+		return repository.findByName(name);
 	}
 
 }

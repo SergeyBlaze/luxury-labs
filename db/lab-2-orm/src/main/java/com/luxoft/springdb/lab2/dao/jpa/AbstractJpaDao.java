@@ -1,15 +1,14 @@
 package com.luxoft.springdb.lab2.dao.jpa;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class AbstractJpaDao {
+public class AbstractJpaDao<R> {
 
-	protected EntityManagerFactory entityManagerFactory;
+	R repository;
 
-	@PersistenceUnit
-	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
-		this.entityManagerFactory = entityManagerFactory;
+	@Autowired
+	public void setRepository(R repository) {
+		this.repository = repository;
 	}
 
 }
